@@ -43,6 +43,7 @@ test("Cannot place a sign over an existing sign", () => {
     ],
     nextPlayer: "O",
   };
+
   const action: Action = {
     player: "O",
     coordinates: {
@@ -51,18 +52,11 @@ test("Cannot place a sign over an existing sign", () => {
     },
   };
 
-  const actual = () => computeNextGame(game, action);
+  const actual: Game = computeNextGame(game, action);
 
-  const expected: Game = {
-    grid: [
-      ["X", "_", "_"],
-      ["_", "_", "_"],
-      ["_", "_", "_"],
-    ],
-    nextPlayer: "O",
-  };
+  const expected: Game = game;
 
-  expect(actual).toBe(expected);
+  expect(actual).toEqual(expected);
 });
 
 test("Second round of the game", () => {

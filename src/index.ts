@@ -21,7 +21,7 @@ export type Game = {
 
 const input = function (game: Game, action: Action): Game {
   if (game.grid[action.coordinates.x][action.coordinates.y] !== "_") {
-    throw new Error("Cannot place a sign over an existing sign");
+    return game;
   }
 
   game.grid[action.coordinates.x][action.coordinates.y] = action.player;
@@ -32,13 +32,11 @@ const input = function (game: Game, action: Action): Game {
   };
 };
 
-
-
 export const computeNextGame = (game: Game, action: Action): Game => {
   const update_game = input(game, action);
 
   return {
     grid: update_game.grid,
-    nextPlayer: action.player === "X" ? "O" : "X",
+    nextPlayer: update_game.nextPlayer,
   };
 };
